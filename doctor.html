@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>LabClinics | Ficha del profesional</title>
+  <meta name="description" content="Ficha del profesional &mdash; LabClinics. Nuestra exactitud es cuesti&oacute;n de vida." />
+  <meta name="theme-color" content="#0a4ea1" />
+
+  <link rel="icon" href="assets/logo-labclinics.png" />
+  <link rel="stylesheet" href="styles/main.css" />
+
+  <meta property="og:title" content="Profesional de LabClinics" />
+  <meta property="og:description" content="Nuestra exactitud es cuesti&oacute;n de vida." />
+  <meta property="og:image" content="assets/logo-labclinics.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+</head>
+<body>
+  <header id="site-header" class="topbar" role="banner">
+    <div class="container topbar-inner">
+      <div class="brand-group">
+        <a href="index.html" class="brand" aria-label="Inicio LabClinics">
+          <img src="assets/logo-labclinics.png" alt="LabClinics S.R.L." width="120" height="auto" />
+        </a>
+        <p class="tagline">Nuestra exactitud es cuesti&oacute;n de vida</p>
+      </div>
+      <nav class="top-links" aria-label="Enlaces r&aacute;pidos">
+        <a href="index.html" class="link-admin">Ver profesionales</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content" role="main">
+    <article id="doctor-article" class="doctor-profile" aria-labelledby="doctor-name">
+      <div class="container doctor-shell">
+        <figure class="doctor-photo">
+          <img id="photo" src="assets/placeholders/doctor.png" alt="Foto del profesional" width="320" height="auto" loading="lazy" />
+        </figure>
+
+        <div class="doctor-info">
+          <header class="doctor-header">
+            <h1 id="doctor-name">Nombre Apellido</h1>
+            <p id="profession" class="muted">Profesi&oacute;n</p>
+            <div class="chipline" id="specialty">
+              <span class="chip">Especialidad</span>
+            </div>
+          </header>
+
+          <section class="contact-actions" aria-label="Acciones r&aacute;pidas">
+            <a id="call-link" href="#" rel="nofollow" class="btn primary">Llamar</a>
+            <a id="wa-link" href="#" rel="nofollow" class="btn secondary">WhatsApp</a>
+            <a id="map-link" href="#" target="_blank" rel="noopener" class="btn ghost">Ver mapa</a>
+          </section>
+
+          <section class="contact-details" aria-label="Contacto">
+            <dl>
+              <div class="row optional" id="branch">
+                <dt>Sucursal</dt>
+                <dd><span></span></dd>
+              </div>
+              <div class="row">
+                <dt>Direcci&oacute;n</dt>
+                <dd id="address"><span></span></dd>
+              </div>
+              <div class="row optional" id="email">
+                <dt>Correo</dt>
+                <dd><a id="email-link" href="#"></a></dd>
+              </div>
+            </dl>
+          </section>
+
+          <section id="treatments" class="optional" aria-label="Tratamientos">
+            <h2>Tratamientos</h2>
+            <div class="chips" id="treatments-chips">
+              <!-- chips din&aacute;micos -->
+            </div>
+          </section>
+
+          <section id="social" class="optional" aria-label="Redes sociales">
+            <h2>Redes</h2>
+            <ul class="social-list">
+              <li class="social-item optional" data-key="x">
+                <a id="social-x" href="#" target="_blank" rel="noopener" aria-label="Perfil en X (antes Twitter)">
+                  <img src="assets/icons/twitter.png" alt="" width="22" height="22" />
+                  <span>X</span>
+                </a>
+              </li>
+              <li class="social-item optional" data-key="facebook">
+                <a id="social-facebook" href="#" target="_blank" rel="noopener" aria-label="Perfil en Facebook">
+                  <img src="assets/icons/facebook.png" alt="" width="22" height="22" />
+                  <span>Facebook</span>
+                </a>
+              </li>
+              <li class="social-item optional" data-key="instagram">
+                <a id="social-instagram" href="#" target="_blank" rel="noopener" aria-label="Perfil en Instagram">
+                  <img src="assets/icons/instagram.png" alt="" width="22" height="22" />
+                  <span>Instagram</span>
+                </a>
+              </li>
+              <li class="social-item optional" data-key="tiktok">
+                <a id="social-tiktok" href="#" target="_blank" rel="noopener" aria-label="Perfil en TikTok">
+                  <img src="assets/icons/tik-tok.png" alt="" width="22" height="22" />
+                  <span>TikTok</span>
+                </a>
+              </li>
+            </ul>
+          </section>
+
+          <section id="about" class="optional" aria-label="Acerca del profesional">
+            <h2>Acerca de</h2>
+            <p id="about-text"></p>
+          </section>
+        </div>
+      </div>
+    </article>
+
+    <div id="state" class="container state" aria-live="polite">
+      <!-- Mensajes de estado din&aacute;micos -->
+    </div>
+  </main>
+
+  <footer id="site-footer" role="contentinfo">
+    <div class="container">
+      <small>&copy; <span id="year"></span> LabClinics S.R.L.</small>
+    </div>
+  </footer>
+
+  <script type="module" src="scripts/public-doctor.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

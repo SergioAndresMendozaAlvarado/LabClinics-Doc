@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>LabClinics | Administraci&oacute;n</title>
+  <meta name="description" content="Panel de administraci&oacute;n de LabClinics." />
+  <meta name="theme-color" content="#0a4ea1" />
+
+  <link rel="icon" href="assets/logo-labclinics.png" />
+  <link rel="stylesheet" href="styles/admin.css" />
+</head>
+<body>
+  <div id="splash" aria-hidden="true">
+    <div class="splash-inner">
+      <img src="assets/logo-labclinics.png" alt="LabClinics S.R.L." width="140" height="auto" />
+      <p class="tagline">Nuestra exactitud es cuesti&oacute;n de vida</p>
+      <p class="loading-text" id="splash-status">Cargando...</p>
+    </div>
+  </div>
+
+  <div id="admin-app" hidden>
+    <header id="admin-header" class="topbar" role="banner">
+      <div class="container row">
+        <div class="brand">
+          <img src="assets/logo-labclinics.png" alt="LabClinics" width="110" height="auto" />
+          <div class="brand-copy">
+            <strong>Administraci&oacute;n</strong>
+            <span>Gestor de profesionales</span>
+          </div>
+        </div>
+        <nav class="tools" aria-label="Herramientas">
+          <button id="btn-logout" class="btn danger" aria-label="Cerrar sesi&oacute;n">Cerrar sesi&oacute;n</button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="admin-main" role="main" class="container">
+      <section class="toolbar" aria-label="Acciones">
+        <div class="left">
+          <button id="btn-create" class="btn primary">+ Nuevo profesional</button>
+        </div>
+        <div class="right">
+          <label class="field sr-only" for="admin-search">Buscar profesionales</label>
+          <input id="admin-search" type="search" placeholder="Buscar por nombre, especialidad, sucursal..." aria-label="Buscar profesionales" />
+          <label class="field sr-only" for="filter-active">Filtrar por estado</label>
+          <select id="filter-active" aria-label="Filtro de estado">
+            <option value="all">Todos</option>
+            <option value="active">Activos</option>
+            <option value="inactive">Inactivos</option>
+          </select>
+        </div>
+      </section>
+
+      <section aria-label="Listado de profesionales">
+        <div id="admin-status" aria-live="polite">Cargando registros...</div>
+
+        <div class="table-wrapper">
+          <table id="doctors-table" class="data-table" aria-describedby="admin-status">
+            <thead>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Profesi&oacute;n</th>
+                <th scope="col">Especialidad</th>
+                <th scope="col">Sucursal</th>
+                <th scope="col">Celular</th>
+                <th scope="col">Estado</th>
+                <th scope="col" style="width:160px">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="doctors-tbody">
+              <!-- Filas din&aacute;micas -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer id="admin-footer" role="contentinfo">
+      <div class="container">
+        <small>&copy; <span id="year"></span> LabClinics S.R.L.</small>
+      </div>
+    </footer>
+  </div>
+
+  <div id="login-view" hidden>
+    <main class="login-container" role="main">
+      <section class="login-card" aria-labelledby="login-title">
+        <h1 id="login-title">Acceso de administrador</h1>
+        <p class="lead">Utiliz&aacute; tus credenciales corporativas para gestionar el directorio.</p>
+        <form id="login-form" autocomplete="on" novalidate>
+          <label>
+            <span>Correo</span>
+            <input id="login-email" name="email" type="email" inputmode="email" autocomplete="email" required />
+          </label>
+          <label>
+            <span>Contrase&ntilde;a</span>
+            <input id="login-password" name="password" type="password" autocomplete="current-password" required />
+          </label>
+          <button id="login-submit" class="btn primary" type="submit">Ingresar</button>
+          <p id="login-error" class="form-error" role="alert" hidden></p>
+        </form>
+        <p class="help">S&oacute;lo personal autorizado. Cada acci&oacute;n queda registrada.</p>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="doctor-modal" aria-labelledby="modal-title">
+    <form id="doctor-form" method="dialog">
+      <header class="modal-header">
+        <h2 id="modal-title">Nuevo profesional</h2>
+      </header>
+
+      <section class="modal-body">
+        <div class="grid">
+          <label>
+            <span>Nombre *</span>
+            <input id="firstName" name="firstName" required />
+          </label>
+          <label>
+            <span>Apellido *</span>
+            <input id="lastName" name="lastName" required />
+          </label>
+          <label>
+            <span>Celular *</span>
+            <input id="phone" name="phone" inputmode="tel" required />
+          </label>
+          <label>
+            <span>Profesi&oacute;n *</span>
+            <input id="profession" name="profession" required />
+          </label>
+          <label>
+            <span>Especialidad *</span>
+            <input id="specialty" name="specialty" required />
+          </label>
+          <label class="wide">
+            <span>Direcci&oacute;n *</span>
+            <input id="address" name="address" required />
+          </label>
+        </div>
+
+        <details class="optional-block">
+          <summary>Opcionales</summary>
+          <div class="grid">
+            <label>
+              <span>Sucursal</span>
+              <input id="branch" name="branch" />
+            </label>
+            <label>
+              <span>Email profesional</span>
+              <input id="email" name="email" type="email" />
+            </label>
+            <label class="wide">
+              <span>URL de mapa</span>
+              <input id="mapUrl" name="mapUrl" type="url" placeholder="https://maps.google.com/..." />
+            </label>
+            <label class="wide">
+              <span>Acerca de</span>
+              <textarea id="about" name="about" rows="3"></textarea>
+            </label>
+            <label class="wide">
+              <span>Tratamientos (separar por coma)</span>
+              <input id="treatments" name="treatments" placeholder="Hemograma, Perfil lipidico, ..." />
+            </label>
+            <label>
+              <span>Usuario en X (URL)</span>
+              <input id="social-x" name="social-x" type="url" placeholder="https://x.com/..." />
+            </label>
+            <label>
+              <span>Facebook (URL)</span>
+              <input id="social-facebook" name="social-facebook" type="url" placeholder="https://facebook.com/..." />
+            </label>
+            <label>
+              <span>Instagram (URL)</span>
+              <input id="social-instagram" name="social-instagram" type="url" placeholder="https://instagram.com/..." />
+            </label>
+            <label>
+              <span>TikTok (URL)</span>
+              <input id="social-tiktok" name="social-tiktok" type="url" placeholder="https://www.tiktok.com/@..." />
+            </label>
+            <label class="wide">
+              <span>Nombre de imagen (repo)</span>
+              <input id="photoName" name="photoName" placeholder="doe.png (assets/doctors/)" />
+            </label>
+            <label>
+              <span>Slug (URL)</span>
+              <input id="slug" name="slug" placeholder="nombre-apellido" />
+            </label>
+            <label>
+              <span>Destacado (prioridad)</span>
+              <input id="priority" name="priority" type="number" min="0" step="1" />
+            </label>
+            <label class="row">
+              <input id="active" name="active" type="checkbox" checked />
+              <span>Activo (visible al p&uacute;blico)</span>
+            </label>
+          </div>
+        </details>
+      </section>
+
+      <footer class="modal-footer">
+        <menu>
+          <button value="cancel" class="btn ghost">Cancelar</button>
+          <button id="save-doctor" value="default" class="btn primary">Guardar</button>
+        </menu>
+      </footer>
+    </form>
+  </dialog>
+
+  <script type="module" src="scripts/admin.js"></script>
+</body>
+</html>

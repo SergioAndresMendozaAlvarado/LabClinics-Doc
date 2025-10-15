@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>LabClinics | Profesionales</title>
+  <meta name="description" content="Directorio de profesionales de LabClinics. Nuestra exactitud es cuesti&oacute;n de vida." />
+  <meta name="theme-color" content="#0a4ea1" />
+
+  <link rel="icon" href="assets/logo-labclinics.png" />
+  <link rel="stylesheet" href="styles/main.css" />
+
+  <meta property="og:title" content="LabClinics | Profesionales" />
+  <meta property="og:description" content="Nuestra exactitud es cuesti&oacute;n de vida." />
+  <meta property="og:image" content="assets/logo-labclinics.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+</head>
+<body>
+  <noscript>
+    <strong>Para ver este sitio correctamente necesitas habilitar JavaScript.</strong>
+  </noscript>
+
+  <header id="site-header" class="topbar" role="banner">
+    <div class="container topbar-inner">
+      <div class="brand-group">
+        <a href="./" class="brand" aria-label="Inicio LabClinics">
+          <img src="assets/logo-labclinics.png" alt="LabClinics S.R.L." width="140" height="auto" />
+        </a>
+        <p class="tagline">Nuestra exactitud es cuesti&oacute;n de vida</p>
+      </div>
+      <nav class="top-links" aria-label="Enlaces r&aacute;pidos">
+        <a href="#search-filters" class="link-skip">Buscar profesionales</a>
+        <a href="admin.html" class="link-admin">Administraci&oacute;n</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content" role="main">
+    <section id="search-filters" class="section hero" aria-labelledby="search-title">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <h1 id="search-title">Profesionales</h1>
+          <p class="hero-lead">
+            Conoc&eacute; al equipo de especialistas que respalda cada resultado de laboratorio
+            en hematolog&iacute;a, inmunolog&iacute;a, microbiolog&iacute;a y m&aacute;s.
+          </p>
+        </div>
+
+        <form id="filter-form" class="filter-form" role="search" aria-label="Buscar profesionales">
+          <div class="field search">
+            <label for="q" class="sr-only">Buscar por nombre, especialidad o sucursal</label>
+            <input id="q" name="q" type="search" autocomplete="off" placeholder="Buscar por nombre, especialidad o sucursal..." />
+          </div>
+
+          <div class="filters-row" aria-label="Filtros">
+            <label class="field">
+              <span class="label">Especialidad</span>
+              <select id="specialty" name="specialty">
+                <option value="">Todas</option>
+                <!-- Opciones din&aacute;micas -->
+              </select>
+            </label>
+
+            <label class="field">
+              <span class="label">Sucursal</span>
+              <select id="branch" name="branch">
+                <option value="">Todas</option>
+                <!-- Opciones din&aacute;micas -->
+              </select>
+            </label>
+          </div>
+        </form>
+
+        <div id="list-status" class="list-status" aria-live="polite">
+          Explor&aacute; nuestra red de profesionales certificados.
+        </div>
+      </div>
+    </section>
+
+    <section id="doctors-grid" class="section cards-section" aria-label="Listado de profesionales">
+      <div class="container">
+        <div id="cards" class="cards">
+          <!-- Las tarjetas se inyectar&aacute;n aqu&iacute; con JS -->
+          <article class="card placeholder" aria-hidden="true">
+            <div class="card-body">
+              <div class="card-header">
+                <span class="card-name shimmer"></span>
+                <span class="card-profession shimmer"></span>
+              </div>
+              <div class="card-meta">
+                <span class="chip shimmer"></span>
+                <span class="chip shimmer"></span>
+              </div>
+              <div class="card-footer shimmer"></div>
+            </div>
+          </article>
+        </div>
+        <p id="empty-state" class="empty-state" hidden>
+          No encontramos profesionales con esos filtros. Ajust&aacute; tu b&uacute;squeda.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer" role="contentinfo">
+    <div class="container">
+      <small>&copy; <span id="year"></span> LabClinics S.R.L. &mdash; Nuestra exactitud es cuesti&oacute;n de vida.</small>
+    </div>
+  </footer>
+
+  <script type="module" src="scripts/public.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
